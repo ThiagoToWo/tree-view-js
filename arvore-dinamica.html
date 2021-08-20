@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Árvore Dinâmica</title>
+	<meta charset="utf-8">
+	<script src='arvore.js'></script>
+	<style>
+	body {background: #ddf;}
+	</style>
+</head>
+<body>
+	<ol id='raiz'></ol>
+	<script>
+		var a = arvore;
+		var raiz = document.getElementById('raiz');
+		var n0 =  a.no('Circulo', raiz);
+		var n1 =  a.no('ÁREA DO POLÍGONO REGULAR', n0);
+		var n11 =  a.noDeFolha('A = p.a (área = semiperímetro x apótema)', n1);
+		var n2 =  a.no('ÁREA DO CÍRCULO', n0);
+		var n21 =  a.noDeFolha('círculo = polígono regular de infinitos lados', n2);
+		var n22 =  a.noDeFolha('a = R (apótema = raio)', n2);
+		var n23 =  a.noDeFolha('A = "pi".R²', n2);
+		var n3 =  a.no('ÁREA DO SETOR CICULAR', n0);
+		var n31 =  a.noDeFolha('ângulo do setor: "alpha" (em graus ou radianos)', n3);
+		var n32 =  a.noDeFolha('fração do círculo (F):"alpha"/360 (em graus) ou "alpha"/2"pi" (em radianos)', n3);
+		var n33 =  a.noDeFolha('A = F x ("pi".R²)', n3);
+		var n4 =  a.no('ÁREA DA COROA CICULAR', n0);		
+		var n41 =  a.noDeFolha('A = "pi"(R² - r²)', n4);
+		a.tornarClicavel();
+	</script>
+</body>
+</html>
