@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<title>Eletricidade Básica</title>
+<meta charset="utf-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
+body {background: #afffff;}
+</style>
+<script>
+var arvore = (function() {
+	var ol;
+	var li;
+	var span;
+	var style;
+	var raiz;
+	
+	style = document.createElement('style');
+	style.id = 'chaveamento';
+	document.head.appendChild(style);
+	style.innerHTML = '.expansivel {font-weight: bold;}\n' +
+					  '.retratil {font-weight: normal;}\n' +
+					  '.inativo {display: none;}\n' +
+					  '.ativo {display: block;}';
+	
+	function no(info, pai) {
+		ol = document.createElement('ol');
+		li = document.createElement('li');
+		span = document.createElement('span');		
+		span.innerHTML = info;
+		span.className = 'expansivel';
+		ol.className = 'ativo';
+		
+		li.appendChild(span);
+		li.appendChild(ol);
+		pai.appendChild(li);
+		
+		return ol;
+	}
+	
+	function noDeFolha(info, pai) {
+		ol = document.createElement('ol');
+		li = document.createElement('li');
+		li.innerHTML = info;
+		
+		pai.appendChild(li);
+	}
+	
+	function tornarClicavel() {
+		var clicaveis = document.getElementsByClassName('expansivel');
+		var olAtivas = document.getElementsByTagName('ol');
+		
+		for (var i = 1; i < olAtivas.length; i++) {
+			olAtivas[i].className = 'inativo';
+		}
+		
+		for (var i = 0; i < clicaveis.length; i++) {
+			clicaveis[i].addEventListener('click', function() {
+				this.parentElement.querySelector('.inativo').classList.toggle('ativo');
+				this.classList.toggle('retratil');
+			});
+		}
+	}
+	
+	return {
+		raiz: raiz,
+		no: no,
+		noDeFolha: noDeFolha,
+		tornarClicavel: tornarClicavel
+	}
+})();
+</script>
+</head>
+<body>
+As informações em letras maiúsculas são clicáveis. Quando em negrito, elas se expandem mostrando seu conteúdo. Clique outra vez para esconder o conteúdo exibido.
+<ol id='raiz'></ol>
+<script>
+var raiz = document.getElementById('raiz');
+var a = arvore;
+var n0 = a.no('ELETRICIDADE', raiz);
+var n1 = a.no('ELETROSTÁTICA', n0);
+var n11 = a.no('CARGA ELÉTRICA', n1);
+var n111 = a.no('CORPO ELETRIZADO', n11);
+var n1111 = a.noDeFolha('Positivo: corpo perdeu elétrons.', n111);
+var n1112 = a.noDeFolha('Negativo: corpo ganhou elétrons.', n111);
+var n1113 = a.noDeFolha('Neutro: elétrons = prótons.', n111);
+var n112 = a.no('LEI DE DUFAY', n11);
+var n1121 = a.noDeFolha('Sinais diferentes: atração.', n112);
+var n1122 = a.noDeFolha('Sinais iguais: repulsão.', n112);
+var n113 = a.no('PROCESSOS DE ELETRIZAÇÃO', n11);
+var n1131 = a.no('ATRITO', n113);
+var n11311 = a.noDeFolha('Ao atritar corpos isolantes, os elétrons de um passam para o outro. (sinais diferentes)', n1131);
+var n1132 = a.no('CONTATO', n113);
+var n11321 = a.noDeFolha('Ao colocar corpos condutores em contato, as cargas se redestribuem pela superfície externa do conjunto. Quando separados, os corpos passam a levar cargas do mesmo sinal e intensidade proporcional ao tamanho deles.', n1132);
+var n1133 = a.no('INDUÇÃO', n113);
+var n11331 = a.noDeFolha('Ao aproximar um corpo carregado (indutor) de um neutro (induzido), as cargas no neutro se separam segundo a lei de DuFay. Aterrando o corpo neutro, parte de sua carga é anulada (a parte repelida) e após desfeito o aterramento e afastados os corpos, o corpo antes neutro passa a ter o sinal do indutor.', n1133);
+var n114 = a.no('MEDIDAS DE CARGA ELÉTRICA', n11);
+var n1141 = a.noDeFolha('Carga elementar: e = 1,6 x 10<sup>-19</sup>C.', n114);
+var n1142 = a.noDeFolha('Carga total de um corpo: Q = n.e', n114);
+var n12 = a.no('CAMPO ELÉTRICO', n1);
+var n121 = a.noDeFolha('Toda carga elétrica cria um campo ao seu redor, responsável por transmitir força a outras cargas à distância.', n12);
+var n122 = a.no('LINHAS DE FORÇA', n12);
+var n1221 = a.noDeFolha('Cargas positivas: divergente.', n122);
+var n1222 = a.noDeFolha('Cargar negativas: convergente.', n122);
+var n122 = a.noDeFolha('Intensidade do campo elétrico: E = Q/d<sup>2</sup>', n12);
+var n13 = a.no('FORÇA ELÉTRICA', n1);
+var n131 = a.noDeFolha('Intensidade da força elétrica: F = q.E', n13);
+var n132 = a.noDeFolha('Lei de Coulomb: F = Q.q/d<sup>2</sup>', n13);
+var n14 = a.no('POTENCIAL ELÉTRICO', n1);
+var n141 = a.noDeFolha('U = E.d', n14);
+var n15 = a.no('ENERGIA ELÉTRICA', n1);
+var n151 = a.noDeFolha('E<sub>p</sub> = q.U', n15);
+var n2 = a.no('ELETRODINÂMICA', n0);
+var n21 = a.no('CORRENTE ELÉTRICA', n2);
+var n211 = a.noDeFolha('Intensidade da corrente elétrica: i = Q/&Delta;t', n21);
+var n212 = a.noDeFolha('Sentido convencional: o contrário ao movimento elétrons.', n21);
+var n22 = a.no('POTÊNCIA ELÉTRICA', n2);
+var n221 = a.noDeFolha('P = i.U', n22);
+var n23 = a.no('RESISTORES', n2);
+var n231 = a.noDeFolha('Transformam energia térmica em calor. Ex.: chuveiro, ferro de passar, chapinha, torradeira, etc.', n23);
+var n232 = a.no('RESISTÊNCIA ELÉTRICA', n23);
+var n2321 = a.noDeFolha('Primeira lei de Ohm: R = U/i', n232);
+var n2322 = a.noDeFolha('Segunda lei de Ohm: R = &rho;.L/A', n232);
+var n233 = a.noDeFolha('Potência de um resistor (potência dissipada): P = U<sup>2</sup>/R = R.i<sup>2</sup>', n23);
+var n234 = a.no('ASSOCIAÇÃO DE RESISTORES', n23);
+var n2341 = a.noDeFolha('Série (corrente tem um único caminho): R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub> + ... + R<sub>n</sub>', n234);
+var n2342 = a.noDeFolha('Paralelo (corrente se divide para cada resistor): 1/R<sub>eq</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + ... + 1/R<sub>n</sub>', n234);
+var n24 = a.no('GERADORES', n2);
+var n241 = a.noDeFolha('Transformam outras formas de energia em energia elétrica. Ex.: pilhas, baterias, dínamos.', n24);
+var n242 = a.noDeFolha('Potencial de saída: U = &epsilon; - r.i', n24);
+var n25 = a.no('RECEPTORES', n2);
+var n251 = a.noDeFolha('Transformam energia elétrica em outras formas que não sejam totalmente calor. Ex.: Computadores, batedeiras, ventiladores, TVs, etc.', n25);
+var n252 = a.noDeFolha('Potencial necessário ao funcionamento: U = &epsilon;\' + r\'.i', n25);
+var n26 = a.no('CAPACITORES', n2);
+var n261 = a.noDeFolha('Armazenam energia elétrica.', n26);
+var n262 = a.noDeFolha('Capacitância: C = Q/U', n26);
+var n263 = a.noDeFolha('Capacitores planos: C = &epsilon;.A/d', n26);
+var n264 = a.noDeFolha('Energia armazenada: E<sub>p</sub> = Q.U/2 = C.U<sup>2</sup>/2 = Q<sup>2</sup>/(2C)', n26);
+var n265 = a.no('ASSOCIAÇÃO DE CAPACITORES', n26);
+var n2651 = a.noDeFolha('Série (as placas positivas de um são ligadas às negativas do outro): 1/C<sub>eq</sub> = 1/C<sub>1</sub> + 1/C<sub>2</sub> + ... + 1/C<sub>n</sub>', n265);
+var n2652 = a.noDeFolha('Paralelo (placas de mesmo sinal ligadas ao mesmo terminal): C<sub>eq</sub> = C<sub>1</sub> + C<sub>2</sub> + ... + C<sub>n</sub>', n265);
+a.tornarClicavel();
+</script>
+</body>
+</html>
