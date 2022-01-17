@@ -27,7 +27,7 @@ var arvore = (function() {
 		return ol;
 	}
 	
-	function noDeFolha(info, pai) {
+	function folha(info, pai) {
 		ol = document.createElement('ol');
 		li = document.createElement('li');
 		li.innerHTML = info;
@@ -53,7 +53,7 @@ var arvore = (function() {
 	
 	return {
 		no: no,
-		noDeFolha: noDeFolha,
+		folha: folha,
 		tornarClicavel: tornarClicavel
 	}
 })();
