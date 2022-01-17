@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Árvore Dinâmica</title>
+	<meta charset="utf-8">
+	<script src='arvore.js'></script>
+	<style>
+	body {background: #ddf;}
+	</style>
+</head>
+<body>
+	<ol id='raiz'></ol>
+	<script>
+		var a = arvore;
+		var raiz = document.getElementById('raiz');
+		var n0 = a.no('ACÚSTICA', raiz);
+		var n1 = a.no('SOM', n0);
+		var n11 = a.folha('onda mecânica longitudinal na faixa de 20Hz a 20000Hz', n1);
+		var n12 = a.folha('limites do som: infrassom < 20Hz <= som <= 20000Hz < ultrassom', n1);
+		var n13 = a.folha('velocidade depende do meio. Ex.: 340m/s (no ar), 1500m/s (na água), 5100m/s (no ferro)', n1);
+		var n2 = a.no('QUALIDADES FISIOLÓGICAS DO SOM', n0);
+		var n21 = a.no('ALTURA', n2);
+		var n211 = a.folha('som baixo = som grave (baixa frequência)', n21);
+		var n212 = a.folha('som alto = som agudo (alta frequência)', n21);
+		var n22 = a.no('TIMBRE', n2);
+		var n221 = a.folha('é o que diferencia uma fonte sonora de outra.', n22);
+		var n222 = a.folha('tá relacionado ao formato da onda.', n22);
+		var n23 = a.no('INTENSIDADE', n2);
+		var n231 = a.folha('"volume" ou energia do som. ', n23);
+		var n232 = a.folha('está diretamente relacionado a amplitude do som', n23);
+		var n233 = a.folha('intensidade: I = Pot/(4.&pi;.x²)', n23);
+		var n234 = a.folha('unidade S.I. &rarr; w/m²', n23);
+		var n235 = a.folha('limiar da audição: I<sub>0</sub> = 10<sup>-12</sup> w/m²', n23);
+		var n236 = a.no('NÍVEL SONORO (dB)', n23);
+		var n2361 = a.folha('N = 10.log(I/I<sub>0</sub>)', n236);
+		var n2362 = a.folha('I = 10<sup>N/10 - 12</sup>', n236);
+		var n3 = a.no('EFEITO DOPPLER', n0);
+		var n31 = a.folha('mudança da frequência do som recebidas por um observador', n3);
+		var n32 = a.no('CAUSAS', n3);
+		var n321 = a.folha('causada pelo movimento relativo entre fonte e observador', n32);
+		var n322 = a.no('AFASTAMENTO', n32);
+		var n3221 = a.folha('o som fica mais grave', n322);
+		var n323 = a.no('APROXIMAÇÃO', n32);
+		var n3231 = a.folha('o som fica mais agudo', n323);
+		var n33 = a.no('EQUAÇÃO E REGRA DOS SINAIS', n3);
+		var n331 = a.folha('f<sub>observ</sub>/(v<sub>som</sub> +- v<sub>observ</sub>) = f<sub>fonte</sub>/(v<sub>som</sub> +- v<sub>fonte</sub>)', n33);
+		var n332 = a.folha('regra OF: o sentido positivo da velocidade (+) é determinado do observador para a fonte (OF)', n33);
+		var n4 = a.no('INTERFERÊNCIA DE ONDAS', n0);
+		var n41 = a.folha('mudança de amplitude da onda quando elas se sobrepõem', n4);
+		var n42 = a.folha('sempre depois da interferência as ondas continuam seu trajeto com as mesmas características', n4);
+		var n43 = a.no('INTERFERÊNCIA CONSTRUTIVA', n4);
+		var n431 = a.folha('ondas com mesma fase &rarr; somamos as amplitudes', n43);
+		var n44 = a.no('INTERFERÊNCIA DESTRUTIVA', n4);
+		var n441 = a.folha('ondas com fases diferentes &rarr; subtraímos as amplitudes', n44);
+		var n5 = a.no('ONDAS ESTACIONÁRIAS', n0);
+		var n51 = a.folha('velocidade = (comprimento de onda) x (frequência) &rarr; v = λ . f', n5);
+		var n52 = a.no('CORDAS', n5);
+		var n521 = a.folha('N = número de ventres = λ/2 (meio comp. de onda cada um)', n52);
+		var n522 = a.folha('velocidade² = Tração/(densidade linear)', n52);
+		var n523 = a.folha('f = Nv/2L', n52);
+		var n53 = a.no('TUBOS ABERTOS', n5);
+		var n531 = a.folha('N = número de nós = λ/2 (meio comp. de onda cada um)', n53);
+		var n532 = a.folha('v = vel. do som no ar', n53);
+		var n533 = a.folha('f = Nv/2L', n53);
+		var n54 = a.no('TUBOS FECHADOS', n5);
+		var n541 = a.folha('I (ímpar) = 2 x (num. de nós) - 1 = λ/4 (1/4 do comp. de onda cada um)', n54);
+		var n542 = a.folha('v = vel. do som no ar', n54);
+		var n543 = a.folha('f = Nv/4L', n54);
+		a.tornarClicavel();
+	</script>
+</body>
+</html>
