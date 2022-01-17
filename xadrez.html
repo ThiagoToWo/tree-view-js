@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<title>Princípios Estratégicos do Xadrez</title>
+	<meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
+	body {background: #afffff;}
+</style>
+<script>
+	var arvore = (function() {
+		var ol;
+		var li;
+		var span;
+		var style;
+		var raiz;
+		
+		style = document.createElement('style');
+		style.id = 'chaveamento';
+		document.head.appendChild(style);
+		style.innerHTML = '.expansivel {font-weight: bold;}\n' +
+						  '.retratil {font-weight: normal;}\n' +
+						  '.inativo {display: none;}\n' +
+						  '.ativo {display: block;}';
+		
+		function no(info, pai) {
+			ol = document.createElement('ol');
+			li = document.createElement('li');
+			span = document.createElement('span');		
+			span.innerHTML = info;
+			span.className = 'expansivel';
+			ol.className = 'ativo';
+			
+			li.appendChild(span);
+			li.appendChild(ol);
+			pai.appendChild(li);
+			
+			return ol;
+		}
+		
+		function folha(info, pai) {
+			ol = document.createElement('ol');
+			li = document.createElement('li');
+			li.innerHTML = info;
+			
+			pai.appendChild(li);
+		}
+		
+		function tornarClicavel() {
+			var clicaveis = document.getElementsByClassName('expansivel');
+			var olAtivas = document.getElementsByTagName('ol');
+			
+			for (var i = 1; i < olAtivas.length; i++) {
+				olAtivas[i].className = 'inativo';
+			}
+			
+			for (var i = 0; i < clicaveis.length; i++) {
+				clicaveis[i].addEventListener('click', function() {
+					this.parentElement.querySelector('.inativo').classList.toggle('ativo');
+					this.classList.toggle('retratil');
+				});
+			}
+		}
+		
+		return {
+			raiz: raiz,
+			no: no,
+			folha: folha,
+			tornarClicavel: tornarClicavel
+		}
+	})();	
+</script>
+</head>
+<body>
+<h1>Princípios Estratégicos do Xadrez</h1>
+As informações em letras maiúsculas são clicáveis. Quando em negrito, elas se expandem mostrando seu conteúdo. Clique outra vez para esconder o conteúdo exibido.
+<ol id='raiz'></ol>
+<script>
+	var raiz = document.getElementById('raiz');
+	var a = arvore;
+	var n1 = a.no('FASES DO JOGO E SEUS PRINCÍPIOS', raiz);
+	var n11 = a.no('ABERTURA', n1);
+	var n111 = a.folha('princípos 2.1 e 2.2', n11);
+	var n12 = a.no('MEIO JOGO', n1);	
+	var n121 = a.folha('princípos 2.3 e 2.4.1', n12);
+	var n13 = a.no('FINAL', n1);	
+	var n131 = a.no('a estrutura de peões determinam o plano a seguir:', n13);
+	var n1311 = a.folha('avançar e promover os peões passados', n131);
+	var n1312 = a.no('atacar os peões fracos do adversário', n131);
+	var n13121 = a.folha('princípio 2.4.2', n1312);
+	var n132 = a.folha('avançar sempre', n13);
+	var n133 = a.folha('colocar o rei no centro', n13);
+	var n134 = a.folha('seguir os princípios', n13);
+	var n2 = a.no('PRINCÍPIOS ESTRATÉGICOS DO XADREZ', raiz);
+	var n21 = a.no('PRINCÍPIO DA PEÇA MENOS ATIVA', n2);
+	var n210 = a.folha('prioridade às peças menos ativas', n21);
+	var n211 = a.no('ABERTURA (decidir a ordem das jogadas)', n21);
+	var n2111 = a.folha('desenvolver as peças', n211);
+	var n2112 = a.folha('fazer o roque', n211);
+	var n2113 = a.folha('conectar as torres', n211);
+	var n22 = a.no('PRINCÍPIO DA MÁXIMA ATIVIDADE', n2);
+	var n220 = a.folha('mover as peças para onde elas fiquem mais ativas possíveis', n22);
+	var n221 = a.folha('ABERTURA (otimizar a posição das peças)', n22);
+	var n222 = a.no('PRINCÍPIO DO CENTRO', n22);
+	var n2221 = a.folha('vide tópico 2.3 ', n222);
+	var n23 = a.no('PRINCÍPIO DO CENTRO', n2);
+	var n230 = a.folha('casas centrais são as mais importantes pois deixam as peças mais ativas', n23);
+	var n231 = a.no('MEIO JOGO (decidir onde atacar)', n23);
+	var n2311 = a.no('iniciar um ataque', n231);
+	var n23111 = a.no('1&ordm; identificar um objeto de ataque', n2311);
+	var n231111 = a.folha('vide tópico 2.4.2.1', n23111);
+	var n23112 = a.folha('2&ordm descobrir um modo para atacar este objeto', n2311);
+	var n24 = a.no('PRINCÍPIO DO ATAQUE', n2);
+	var n240 = a.folha('lances de ataque são os melhores', n24);
+	var n241 = a.no('MEIO JOGO', n24);
+	var n2411 = a.folha('vide tópico 2.3.1', n241);
+	var n242 = a.no('FINAL', n24);
+	var n2421 = a.no('DEBILIDADES', n242);
+	var n24210 = a.folha('peões ou as casas 5 ou 6 que não podem mais ser protegidos por outros peões (debilidades)	', n2421);
+	a.tornarClicavel();
+</script>
+</body>
+</html>
